@@ -2,6 +2,8 @@ from base64 import b64decode
 import datetime
 import json
 import os
+import sys
+import logging
 from urlparse import parse_qsl, urlparse
 
 from flask import Flask, Response, abort, request
@@ -29,6 +31,8 @@ SECRET_KEY = 'secret - change me'  # TODO: change me.
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 def get_query(start, end):
     query = PageView.select()
