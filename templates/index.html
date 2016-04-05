@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>Overview | AnalyticPi</title>
+    <link type="text/css" rel="stylesheet" href="static/css/framework.css" />
+    <link type="text/css" rel="stylesheet" href="static/css/main.css" />
+</head>
+<body>
+<div class="page">
+<!--header begin-->
+<header>
+	<div class="container">
+		<div id="logo">
+			<h1>Analytic Pi</h1>
+		</div>
+
+	</div>
+</header>
+<!-- the main menu-->
+	<div class="container">
+	<!--the content-->
+		<div class="pageHeader">
+			<div class="segment">
+				<h3 class="ui dividing header">
+  					<i class="large home icon"></i>
+  					<div class="content">
+              Overview
+  					</div>
+				</h3>
+			</div>
+		</div>
+
+	<!--device list-->
+	<div class="ui three column grid" id="indexList">
+		<div class="row">
+			<div class="column">
+				<div class="ui blue segment">
+					<a class="content">
+						<h4 class="deviceName">Page Views</h4>
+            <h1 class="deviceName">{{ page_views }}</h4>
+					</a>
+				</div>
+			</div>
+      <div class="column">
+				<div class="ui blue segment">
+					<a class="content">
+						<h4 class="deviceName">Unique IPs</h4>
+            <h1 class="deviceName">{{ unique_ips }}</h4>
+					</a>
+				</div>
+			</div>
+      <div class="column">
+				<div class="ui blue segment">
+					<a class="content">
+						<h4 class="deviceName">Top Pages</h4>
+          <ul>
+            {% for title, count in top_pages %}
+            <li>{{title}}<span class="right">{{count}}</span></li>
+            {% endfor %}
+            </ul>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!--footer begin-->
+<footer>
+	<div id="copyrights">
+		<div class="inset">
+			<div class="bigcontainer">
+				<div class="fl">
+					<div class="logo"><h1>Analytic Pi</h1></div>
+					<p>A website for CS-521 TCP/IP</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/jquery.min.js') }}"></script>
+<script type="text/javascript" src="static/javascript/framework.js"></script>
+<script type="text/javascript" src="static/javascript/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="static/javascript/alert.js"></script>
+<script>
+	$(document).ready(function(){
+		$('a#copy-apiKey').zclip({
+			path:'static/javascript/ZeroClipboard.swf',
+			copy:function(){return $('input#apiKey').val();}
+		});
+
+		$('.ui.dropdown')
+			.dropdown();
+	});
+</script>
+</body>
+</html>
