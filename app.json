@@ -16,7 +16,7 @@
       "generator": "secret"
     },
     "ROOT_URL": {
-      "description": "The root url of your application.",
+      "description": "The root url of your application."
     }
   },
   "scripts": {
