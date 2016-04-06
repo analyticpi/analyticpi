@@ -4,4 +4,4 @@
 
 Analytic Pi is an open-source web analytics platform implemented by Python and Flask.
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy/?template=https://github.com/heroku/node-js-getting-started)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy/?template=https://github.com/analyticpi/analyticpi)
