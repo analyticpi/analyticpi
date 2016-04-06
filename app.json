@@ -10,6 +10,15 @@
   "repository": "https://github.com/analyticpi/analyticpi",
   "logo": "https://avatars2.githubusercontent.com/u/18034015",
   "success_url": "/",
+  "env": {
+    "SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "ROOT_URL": {
+      "description": "The root url of your application.",
+    }
+  },
   "scripts": {
     "postdeploy": "python migration.py"
   },

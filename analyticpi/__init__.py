@@ -1,33 +1,30 @@
-from base64 import b64decode
-import datetime
-import json
 import os
 import sys
 import logging
-from urlparse import parse_qsl, urlparse
+from base64 import b64decode
 
+from peewee import *
 from flask import Flask, Response, abort, request
 from flask import render_template
-from peewee import *
 
-from db import database
-from page_view import PageView
+from analyticpi.db import database
+from analyticpi.page_view import PageView
 
 # 1 pixel GIF, base64-encoded.
 BEACON = b64decode(
     'R0lGODlhAQABAIAAANvf7wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==')
 
-DOMAIN = 'http://analyticpi.com'  # TODO: change me.
-
-# Simple JavaScript which will be included and executed on the client-side.
 JAVASCRIPT = """(function(){
     var d=document,i=new Image,e=encodeURIComponent;
     i.src='%s/track.gif?url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
     })()""".replace('\n', '')
 
+
 # Flask application settings.
 DEBUG = bool(os.environ.get('DEBUG'))
-SECRET_KEY = 'secret - change me'  # TODO: change me.
+
+ROOT_URL = os.environ['ROOT_URL']
+SECRET_KEY = os.environ['SECRET_KEY']
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -75,7 +72,7 @@ def analyze():
 
 @app.route('/track.js')
 def script():
-    return Response(app.config['JAVASCRIPT'] % (app.config['DOMAIN']),
+    return Response(app.config['JAVASCRIPT'] % (app.config['ROOT_URL']),
                     mimetype='text/javascript')
 
 
