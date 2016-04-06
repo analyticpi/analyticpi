@@ -4,8 +4,8 @@ import optparse
 
 from peewee import *
 
-from app import database
-from app import PageView
+from analyticpi import database
+from analyticpi.models import PageView
 
 
 def get_query(start, end):

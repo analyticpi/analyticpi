@@ -1,13 +1,15 @@
-import logging
+import os
 import sys
+import logging
 from base64 import b64decode
 
-import os
+from peewee import *
+from flask import render_template
+from flask import Flask, Response, abort, request
+
 from analyticpi.db import database
 from analyticpi.models.page_view import PageView
-from flask import Flask, Response, abort, request
-from flask import render_template
-from peewee import *
+
 
 # 1 pixel GIF, base64-encoded.
 BEACON = b64decode(
