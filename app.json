@@ -20,7 +20,7 @@
     }
   },
   "scripts": {
-    "postdeploy": "python migration.py"
+    "postdeploy": "python analyticpi/migration.py"
   },
   "image": "heroku/python",
   "addons": [
