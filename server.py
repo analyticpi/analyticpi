@@ -1,10 +1,10 @@
 import os
 
-from os.path import join, dirname
 from dotenv import load_dotenv
 
+
 if __name__ == '__main__':
-    dotenv_path = join(dirname(__file__), '.env')
+    dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
     load_dotenv(dotenv_path)
 
     from analyticpi import database, app, migration
