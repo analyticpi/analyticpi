@@ -1,0 +1,22 @@
+{
+  "name": "Analytic Pi",
+  "description": "An open source web analytics platform implemented by Python and Flask.",
+  "keywords": [
+    "Python",
+    "Flask",
+    "Web Analytics"
+  ],
+  "website": "https://analyticpi.com/",
+  "repository": "https://github.com/analyticpi/analyticpi",
+  "logo": "https://avatars2.githubusercontent.com/u/18034015",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "python migration.py"
+  },
+  "image": "heroku/python",
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "buildpacks": [
+  ]
+}
