@@ -5,7 +5,7 @@ from urlparse import parse_qsl, urlparse
 from peewee import *
 from flask import request
 
-from db import database
+from analyticpi.db import database
 
 
 class JSONField(TextField):

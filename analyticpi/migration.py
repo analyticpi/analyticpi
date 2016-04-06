@@ -1,5 +1,5 @@
+from analyticpi.models.page_view import PageView
 from db import database
-from page_view import PageView
 
 
 def initialize():
