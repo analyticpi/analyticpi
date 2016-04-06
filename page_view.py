@@ -6,8 +6,10 @@ from db import database
 
 from flask import Flask, Response, abort, request
 
+
 class JSONField(TextField):
     """Store JSON data in a TextField."""
+
     def python_value(self, value):
         if value is not None:
             return json.loads(value)
@@ -15,6 +17,7 @@ class JSONField(TextField):
     def db_value(self, value):
         if value is not None:
             return json.dumps(value)
+
 
 class PageView(Model):
     domain = CharField()
