@@ -2,3 +2,4 @@ flask
 peewee
 gunicorn
 psycopg2
+python-dotenv

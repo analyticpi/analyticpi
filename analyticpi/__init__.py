@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 from base64 import b64decode
+from os.path import join, dirname
 
 from peewee import *
 from flask import Flask, Response, abort, request
@@ -18,7 +19,6 @@ JAVASCRIPT = """(function(){
     var d=document,i=new Image,e=encodeURIComponent;
     i.src='%s/track.gif?url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
     })()""".replace('\n', '')
-
 
 # Flask application settings.
 DEBUG = bool(os.environ.get('DEBUG'))
@@ -88,13 +88,3 @@ def home():
 @app.errorhandler(404)
 def not_found(e):
     return Response('Not found.')
-
-
-if __name__ == '__main__':
-    database.create_tables([PageView], safe=True)
-    app.debug = True
-    app.run(port=8080)  # Use Flask's builtin WSGI server.
-    # Or for gevent,
-    # from gevent.wsgi import WSGIServer
-    # WSGIServer(('', 5000), app).serve_forever()
-    database.close()
