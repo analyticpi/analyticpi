@@ -1,7 +1,6 @@
 import os
 import sys
 import logging
-from base64 import b64decode
 
 from peewee import *
 from flask import render_template
@@ -9,16 +8,7 @@ from flask import Flask, Response, abort, request
 
 from analyticpi.db import database
 from analyticpi.models.page_view import PageView
-
-
-# 1 pixel GIF, base64-encoded.
-BEACON = b64decode(
-    'R0lGODlhAQABAIAAANvf7wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==')
-
-JAVASCRIPT = """(function(){
-    var d=document,i=new Image,e=encodeURIComponent;
-    i.src='%s/track.gif?url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
-    })()""".replace('\n', '')
+from analyticpi.views import tracking_view
 
 # Flask application settings.
 DEBUG = bool(os.environ.get('DEBUG'))
@@ -57,25 +47,6 @@ def top_pages(query, limit):
             .tuples().limit(limit))
 
 
-@app.route('/track.gif')
-def analyze():
-    if not request.args.get('url'):
-        abort(404)
-
-    with database.transaction():
-        PageView.create_from_request()
-
-    response = Response(app.config['BEACON'], mimetype='image/gif')
-    response.headers['Cache-Control'] = 'private, no-cache'
-    return response
-
-
-@app.route('/track.js')
-def script():
-    return Response(app.config['JAVASCRIPT'] % (app.config['ROOT_URL']),
-                    mimetype='text/javascript')
-
-
 @app.route('/')
 def home():
     query = get_query(None, None)
@@ -88,3 +59,5 @@ def home():
 @app.errorhandler(404)
 def not_found(e):
     return Response('Not found.')
+
+app.register_blueprint(tracking_view)
