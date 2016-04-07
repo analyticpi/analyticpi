@@ -26,9 +26,6 @@ class User(Model, UserMixin):
 
     @classmethod
     def exists(cls, email, password):
-        print email
-        print password
-        print get_hashed(password)
         try:
             user = cls.get(cls.email == email, cls.password == get_hashed(password))
         except User.DoesNotExist:
