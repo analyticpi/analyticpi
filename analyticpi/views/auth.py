@@ -1,11 +1,41 @@
 import re
 
 import flask
-from flask import render_template, redirect, url_for, flash, session
+from flask import render_template, redirect, url_for, flash, session, abort
 import flask.ext.login as flask_login
 
-from analyticpi.models.user import User
 from analyticpi.views import auth_view
+from analyticpi.models.user import User
+from analyticpi.extensions import login_manager
+
+
+@login_manager.user_loader
+def user_loader(email):
+    try:
+        user = User.get(User.email == email)
+    except User.DoesNotExist:
+        return
+    return user
+
+
+@login_manager.request_loader
+def request_loader(request):
+    email = request.cookies.get('email')
+    if email is None:
+        return
+    user = User.authenticate(email)
+    if user is None:
+        return
+
+    user = User()
+    user.id = email
+    user.is_authenticated = True
+    return user
+
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    abort(404)
 
 
 @auth_view.route('/login')

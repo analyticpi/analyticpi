@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 
 from peewee import *
@@ -8,6 +9,7 @@ from analyticpi.models.user import User
 
 class Site(Model):
     name = CharField()
+    uuid = UUIDField(default=uuid.uuid4())
     main_url = CharField()
     created_at = DateTimeField(default=datetime.now())
 

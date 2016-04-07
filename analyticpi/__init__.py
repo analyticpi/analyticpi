@@ -20,6 +20,7 @@ app.config.from_object(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 login_manager.init_app(app)
+login_manager.login_view = 'auth.login'
 
 
 def page_views(query):

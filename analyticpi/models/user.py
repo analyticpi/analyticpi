@@ -4,7 +4,6 @@ from peewee import *
 from flask.ext.login import UserMixin
 
 from analyticpi.db import database
-from analyticpi.extensions import login_manager
 from analyticpi.utils.hashing import get_hashed
 
 
@@ -37,24 +36,3 @@ class User(Model, UserMixin):
         return super(User, self).save(*args, **kwargs)
 
 
-@login_manager.user_loader
-def user_loader(email):
-    user = User.get(User.email == email)
-    if user is None:
-        return
-    return user
-
-
-@login_manager.request_loader
-def request_loader(request):
-    email = request.cookies.get('email')
-    if email is None:
-        return
-    user = User.authenticate(email)
-    if user is None:
-        return
-
-    user = User()
-    user.id = email
-    user.is_authenticated = True
-    return user

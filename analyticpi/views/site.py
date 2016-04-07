@@ -36,6 +36,6 @@ def show_site(site_id):
     site = Site.get(id=site_id)
     try:
         site_user = SiteUser.get(site=site.id, user=current_user.id)
-    except SiteUser.DoesNotExist:
+    except SiteUser.UserDoesNotExist:
         abort(404)
     return render_template('site.html', site=site)
