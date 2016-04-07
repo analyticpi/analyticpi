@@ -1,4 +1,5 @@
 flask
+peewee
 flask-login
 flask-script
 gunicorn
