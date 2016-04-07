@@ -3,6 +3,7 @@ from datetime import datetime
 from peewee import *
 
 from analyticpi.db import database
+from analyticpi.models.user import User
 
 
 class Site(Model):
@@ -13,3 +14,13 @@ class Site(Model):
 
     class Meta:
         database = database
+
+
+class SiteUser(Model):
+    site = ForeignKeyField(Site)
+    user = ForeignKeyField(User)
+
+    class Meta:
+        database = database
+        db_table = 'site_users'
+
