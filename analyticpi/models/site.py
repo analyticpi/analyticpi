@@ -7,7 +7,6 @@ from analyticpi.models.user import User
 
 
 class Site(Model):
-    email = CharField()
     name = CharField()
     main_url = CharField()
     created_at = DateTimeField(default=datetime.now())

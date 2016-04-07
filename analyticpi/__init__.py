@@ -36,8 +36,9 @@ def top_pages(query, limit):
             .tuples().limit(limit))
 
 
-from analyticpi.views import tracking_view, auth_view, home_view
+from analyticpi.views import tracking_view, auth_view, home_view, site_view
 
 app.register_blueprint(tracking_view)
 app.register_blueprint(auth_view)
 app.register_blueprint(home_view)
+app.register_blueprint(site_view)
