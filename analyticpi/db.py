@@ -15,7 +15,4 @@ try:
                                          host=url.hostname,
                                          port=url.port)
 except KeyError:
-    database = peewee.MySQLDatabase(os.environ["MYSQL_DATABASE"],
-                                    os.environ["MYSQL_HOST"],
-                                    user=os.environ["MYSQL_USER"],
-                                    passwd=os.environ["MYSQL_PASSWD"])
+    database = peewee.SqliteDatabase('my_app.db')
