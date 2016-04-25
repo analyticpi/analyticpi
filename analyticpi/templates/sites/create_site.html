@@ -1,8 +1,15 @@
 {% extends "default_layout.html" %}
 {% block body %}
-    <form action='{{ url_for('site.create_site_as_post') }}' method='POST'>
-        <input type='text' name='name' id='name' placeholder='Name'/>
-        <input type='text' name='main_url' id='main_url' placeholder='Main URL'/>
-        <input type='submit' name='submit'/>
-    </form>
+
+    <div class="container">
+        <form action='{{ url_for("site.create_site_as_post") }}' method="POST" class="form-signin">
+            <h2 class="form-signin-heading">Create a new site</h2>
+            <label for="name" class="sr-only">Site name</label>
+            <input type="text" name="name" class="form-control" placeholder="Site name" required="" autofocus="">
+            <label for="domain" class="sr-only">Domain</label>
+            <input type="text" name="domain" class="form-control" placeholder="Domain name" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+
 {% endblock %}

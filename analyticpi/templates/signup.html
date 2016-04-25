@@ -1,31 +1,17 @@
 {% extends "default_layout.html" %}
 {% block body %}
-    <div class="ap-center-layout mdl-layout mdl-js-layout mdl-color--grey-100">
-        <main class="ap-center-layout__content mdl-layout__content">
-            <div class="mdl-card mdl-shadow--6dp">
-                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-                    <h2 class="mdl-card__title-text">Sign Up</h2>
-                </div>
-                <form action="/signup" method="post">
-                <div class="mdl-card__supporting-text">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" name="name" id="name" />
-                            <label class="mdl-textfield__label" for="name">Full Name</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" name="email" id="email" />
-                            <label class="mdl-textfield__label" for="name">Email</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="password" name="password" id="password" />
-                            <label class="mdl-textfield__label" for="password">Password</label>
-                        </div>
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" name="submit"/>
-                </div>
-                </form>
-            </div>
-        </main>
+
+    <div class="container">
+        <form action='/signup' method="POST" class="form-signin">
+            <h2 class="form-signin-heading">Sign up</h2>
+            <label for="email" class="sr-only">Email address</label>
+            <input type="email" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+            <label for="name" class="sr-only">Email address</label>
+            <input type="text" name="name" class="form-control" placeholder="Full name" required="" autofocus="">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
     </div>
+
 {% endblock %}

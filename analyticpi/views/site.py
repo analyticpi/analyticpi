@@ -24,16 +24,16 @@ def create_site():
 @database.atomic()
 def create_site_as_post():
     name = request.form.get('name')
-    main_url = request.form.get('main_url')
+    main_url = request.form.get('domain')
     site = Site.create(name=name, main_url=main_url)
     SiteUser.create(site=site.id, user=current_user.id)
     return redirect(url_for('site.show_site', site_id=site.id))
 
 
-@site_view.route('/site/<site_id>/')
+@site_view.route('/site/<site_domain>/')
 @login_required
-def show_site(site_id):
-    site = Site.get(id=site_id)
+def show_site(site_domain):
+    site = Site.get(domain=site_domain)
     try:
         site_user = SiteUser.get(site=site.id, user=current_user.id)
     except SiteUser.UserDoesNotExist:

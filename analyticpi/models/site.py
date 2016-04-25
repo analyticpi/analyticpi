@@ -10,7 +10,7 @@ from analyticpi.models.user import User
 class Site(Model):
     name = CharField()
     uuid = UUIDField(default=uuid.uuid4())
-    main_url = CharField()
+    domain = CharField(unique=True)
     created_at = DateTimeField(default=datetime.now())
 
     class Meta:
