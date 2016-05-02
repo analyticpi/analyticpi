@@ -5,3 +5,4 @@ flask-script
 gunicorn
 psycopg2
 python-dotenv
+httpagentparser

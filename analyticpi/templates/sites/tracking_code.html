@@ -1,0 +1,32 @@
+{% extends "default_layout.html" %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-3 sidebar">
+            {% include "sites/sidebar.html" %}
+        </div>
+        <div class="col-sm-9 content">
+            <div class="dashhead">
+                <div class="dashhead-titles">
+                    <h6 class="dashhead-subtitle">Overview</h6>
+                    <h2 class="dashhead-title">{{ site.name }}</h2>
+                </div>
+            </div>
+
+            <hr class="m-t">
+
+            <div class="row">
+                <div class="col-sm-12 m-b-md">
+                    <div class="form-group">
+                        <label for="tracking_code">Tracking code</label>
+                        <p>Add the following code to your website:</p>
+                        <input class="form-control" id="tracking_code" value="{{ site.tracking_code }}" disabled>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+    var stats_url = "{{ url_for('site.stats', site_domain=site.domain) }}";
+    </script>
+{%  endblock %}

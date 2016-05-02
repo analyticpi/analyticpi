@@ -35,8 +35,11 @@ gulp.task('js', function() {
 
 gulp.task('vendor-js', function() {
   return gulp.src([
-    'src/vendor/js/codemirror.js',
-    'src/vendor/js/*.js'
+    'src/vendor/js/jquery.min.js',
+    'src/vendor/js/chart.js',
+    'src/vendor/js/tookit.js',
+    'src/vendor/js/tablesorter.min.js',
+    'src/vendor/js/application.js'
   ])
   .pipe(concat('vendor.js'))
   .pipe(gulp.dest('analyticpi/static/js/'))

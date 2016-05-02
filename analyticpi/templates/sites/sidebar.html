@@ -1,0 +1,19 @@
+<nav class="sidebar-nav">
+    <div class="sidebar-header">
+        <button class="nav-toggler nav-toggler-sm sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-sm">
+            <span class="sr-only">Toggle nav</span>
+        </button>
+    </div>
+
+    <div class="collapse nav-toggleable-sm" id="nav-toggleable-sm">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="nav-header">Dashboards</li>
+            {% for route, name in [('site.show_site', 'Overview'), ('site.tracking_code', 'Tracking Code')] %}
+                <li {%- if request.path == url_for(route, site_domain=site.domain) %} class="active"{% endif %}>
+                    <a href="{{ url_for(route, site_domain=site.domain) }}">{{ name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <hr class="visible-xs m-t">
+    </div>
+</nav>

@@ -3,6 +3,7 @@ import datetime
 import optparse
 
 from peewee import *
+import httpagentparser
 
 from analyticpi import database
 from analyticpi.models import PageView
@@ -49,7 +50,11 @@ def top_traffic_times(query):
 
 def user_agents(query, limit):
     c = Counter(pv.headers.get('User-Agent') for pv in query)
-    return c.most_common(limit)
+    ua_dict = {}
+    for key, count in c.most_common(limit):
+        ua = httpagentparser.detect(key)
+        ua_dict[ua['browser']['name']] = count
+    return ua_dict
 
 
 def languages(query, limit):

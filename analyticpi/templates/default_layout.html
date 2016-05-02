@@ -77,14 +77,7 @@
 {% endblock %}
 
 </div>
-<script src="{{ url_for('static', filename='javascript/jquery.min.js') }}"></script>
-<script src="{{ url_for('static', filename='javascript/chart.js') }}"></script>
-<script src="{{ url_for('static', filename='javascript/tablesorter.min.js') }}"></script>
-<script src="{{ url_for('static', filename='javascript/toolkit.js') }}"></script>
-<script src="{{ url_for('static', filename='javascript/application.js') }}"></script>
-<script>
-    // execute/clear BS loaders for docs
-    $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
-</script>
+<script src="{{ url_for('static', filename='js/vendor.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
