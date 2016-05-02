@@ -13,7 +13,7 @@ BEACON = b64decode(
 
 JAVASCRIPT = """(function(){
     var d=document,i=new Image,e=encodeURIComponent;
-    i.src='%s/track.gif?url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
+    i.src='%s/track.gif?site=%s&url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
     })()""".replace('\n', '')
 
 
@@ -32,5 +32,8 @@ def analyze():
 
 @tracking_view.route('/track.js')
 def script():
-    return Response(JAVASCRIPT % (app.config['ROOT_URL']),
+    site_id = request.args.get("site")
+    if site_id is None:
+        abort(400)
+    return Response(JAVASCRIPT % (app.config['ROOT_URL'], site_id),
                     mimetype='text/javascript')

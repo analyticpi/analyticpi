@@ -3,7 +3,7 @@
     <a href="{{ url_for('site.create_site') }}">Create a new site</a>
     <ul>
     {% for site in sites %}
-        <li><a href="{{ url_for('site.show_site', site_id=site.id) }}">{{ site.name }}</a></li>
+        <li><a href="{{ url_for('site.show_site', site_domain=site.domain) }}">{{ site.name }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

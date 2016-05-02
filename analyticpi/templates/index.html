@@ -15,36 +15,36 @@
 
 	<!--device list-->
 	<div class="ui three column grid" id="indexList">
-		<div class="row">
-			<div class="column">
-				<div class="ui blue segment">
-					<a class="content">
-						<h4 class="deviceName">Page Views</h4>
-            <h1 class="deviceName">{{ page_views }}</h4>
-					</a>
-				</div>
-			</div>
-      <div class="column">
-				<div class="ui blue segment">
-					<a class="content">
-						<h4 class="deviceName">Unique IPs</h4>
-            <h1 class="deviceName">{{ unique_ips }}</h4>
-					</a>
-				</div>
-			</div>
-      <div class="column">
-				<div class="ui blue segment">
-					<a class="content">
-						<h4 class="deviceName">Top Pages</h4>
-          <ul>
-            {% for title, count in top_pages %}
-            <li>{{title}}<span class="right">{{count}}</span></li>
-            {% endfor %}
-            </ul>
-					</a>
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="column">
+                <div class="ui blue segment">
+                    <a class="content">
+                        <h4 class="deviceName">Page Views</h4>
+                        <h1 class="deviceName">{{ page_views }}</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui blue segment">
+                    <a class="content">
+                        <h4 class="deviceName">Unique IPs</h4>
+                        <h1 class="deviceName">{{ unique_ips }}</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui blue segment">
+                    <a class="content">
+                        <h4 class="deviceName">Top Pages</h4>
+                        <ul>
+                            {% for url, title, count in top_pages %}
+                                <li>{{title}}<span class="right">{{count}}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </a>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
 </div>

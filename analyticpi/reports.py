@@ -8,8 +8,9 @@ from analyticpi import database
 from analyticpi.models import PageView
 
 
-def get_query(start, end):
+def get_query(start, end, site):
     query = PageView.select()
+    query = query.where(PageView.site == site.id)
     if start and end:
         query = query.where(PageView.timestamp.between(start, end))
     elif start:
@@ -28,7 +29,7 @@ def unique_ips(query):
 
 
 def top_pages(query, limit):
-    return (query.select(PageView.title, fn.COUNT(PageView.id))
+    return (query.select(PageView.url, PageView.title, fn.COUNT(PageView.id))
             .group_by(PageView.title).order_by(fn.COUNT(PageView.id).desc())
             .tuples().limit(limit))
 

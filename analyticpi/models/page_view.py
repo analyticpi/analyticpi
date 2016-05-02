@@ -3,9 +3,10 @@ import datetime
 from urlparse import parse_qsl, urlparse
 
 from peewee import *
-from flask import request
+from flask import request, abort
 
 from analyticpi.db import database
+from analyticpi.models.site import Site
 
 
 class JSONField(TextField):
@@ -21,6 +22,7 @@ class JSONField(TextField):
 
 
 class PageView(Model):
+    site = ForeignKeyField(Site)
     domain = CharField()
     url = TextField()
     timestamp = DateTimeField(default=datetime.datetime.now, index=True)
@@ -38,7 +40,13 @@ class PageView(Model):
         parsed = urlparse(request.args['url'])
         params = dict(parse_qsl(parsed.query))
 
+        try:
+            site = Site.get(uuid=request.args.get('site'))
+        except Site.DoesNotExist:
+            abort(400)
+
         return PageView.create(
+            site=site.id,
             domain=parsed.netloc,
             url=parsed.path,
             title=request.args.get('t') or '',
