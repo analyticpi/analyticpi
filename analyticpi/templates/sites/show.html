@@ -1,9 +1,46 @@
 {% extends "default_layout.html" %}
 {% block body %}
-    <a href="{{ url_for('site.create_site') }}">Create a new site</a>
-    <ul>
-    {% for site in sites %}
-        <li><a href="{{ url_for('site.show_site', site_domain=site.domain) }}">{{ site.name }}</a></li>
-    {% endfor %}
-    </ul>
+
+
+    <div class="row">
+
+        <div class="col-sm-12 content">
+            <div class="dashhead">
+                <div class="dashhead-titles">
+                    <h2 class="dashhead-title">Sites</h2>
+                </div>
+            </div>
+
+            <hr class="m-t">
+
+            <div class="row">
+
+                <div class="col-sm-12 m-b-md">
+
+                    <a href="{{ url_for('site.create_site') }}" class="btn btn-primary">Create a new site</a>
+
+                    <table class="table">
+                        <caption>Your sites</caption>
+                        <thead>
+                        <tr>
+                            <th>Site Name</th>
+                            <th>Domain Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for site in sites %}
+                            <tr>
+                                <td><a href={{ url_for('site.show_site', site_domain=site.domain) }}>{{ site.name }}</a></td>
+                                <td>{{ site.domain }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 {% endblock %}

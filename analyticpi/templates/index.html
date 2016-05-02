@@ -1,65 +1,62 @@
 {% extends "default_layout.html" %}
 {% block body %}
-	<div class="container">
-	<!--the content-->
-		<div class="pageHeader">
-			<div class="segment">
-				<h3 class="ui dividing header">
-  					<i class="large home icon"></i>
-  					<div class="content">
-              Overview
-  					</div>
-				</h3>
-			</div>
-		</div>
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-heading">Open Source Web Analytics</div>
+                <a href="/login" class="page-scroll btn btn-primary btn-lg">Sign in</a>
+                <a href="//github.com/analyticpi/analyticpi" class="page-scroll btn btn-success btn-lg">View the source</a>
+            </div>
+        </div>
+    </header>
 
-	<!--device list-->
-	<div class="ui three column grid" id="indexList">
-        <div class="row">
-            <div class="column">
-                <div class="ui blue segment">
-                    <a class="content">
-                        <h4 class="deviceName">Page Views</h4>
-                        <h1 class="deviceName">{{ page_views }}</h4>
-                    </a>
+
+        <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
             </div>
-            <div class="column">
-                <div class="ui blue segment">
-                    <a class="content">
-                        <h4 class="deviceName">Unique IPs</h4>
-                        <h1 class="deviceName">{{ unique_ips }}</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="column">
-                <div class="ui blue segment">
-                    <a class="content">
-                        <h4 class="deviceName">Top Pages</h4>
-                        <ul>
-                            {% for url, title, count in top_pages %}
-                                <li>{{title}}<span class="right">{{count}}</span></li>
-                            {% endfor %}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="team-member">
+                        <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Peixuan Ding</h4>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
                         </ul>
-                    </a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="team-member">
+                        <img src="img/team/3.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Jianhong Mou</h4>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
                 </div>
             </div>
         </div>
-	</div>
-</div>
-</div>
-<!--footer begin-->
+    </section>
 
-<footer>
-	<div id="copyrights">
-		<div class="inset">
-			<div class="bigcontainer">
-				<div class="fl">
-					<div class="logo"><h1>Analytic Pi</h1></div>
-					<p>A website for CS-521 TCP/IP</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
+
 {% endblock %}
+

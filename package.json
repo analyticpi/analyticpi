@@ -1,0 +1,29 @@
+{
+  "name": "analyticpi",
+  "version": "0.0.1",
+  "description": "![Analytic Pi](https://avatars2.githubusercontent.com/u/18034015?v=3&s=200)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/analyticpi/analyticpi.git"
+  },
+  "author": "Peixuan Ding",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/analyticpi/analyticpi/issues"
+  },
+  "homepage": "https://github.com/analyticpi/analyticpi#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.2"
+  }
+}
