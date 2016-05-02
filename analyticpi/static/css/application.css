@@ -1,0 +1,68 @@
+/* global body padding */
+body {
+  padding-top:    20px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-top:    50px;
+    padding-bottom: 50px;
+  }
+}
+
+
+/* global spacing overrides */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-top: 0;
+}
+hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: #FFFFFF !important;
+    color: #555 !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: #555555 !important;
+    }
+
+.navbar-fixed-top,
+.navbar-static-top {
+  border-bottom: 0;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+    text-align: center;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input {
+  margin-bottom: 10px;
+}
+
