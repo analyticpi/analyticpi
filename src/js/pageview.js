@@ -49,11 +49,18 @@
             };
 
             var pvMonthChart = new Chart($("#pvMonthChart"), {
-                type: 'line',
-                data: data,
-                options: {
-                    fullWidth: true
-                }
+              type: 'line',
+              data: data,
+              options: {
+                fullWidth: true,
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }]
+                },
+              }
             });
         }
     }

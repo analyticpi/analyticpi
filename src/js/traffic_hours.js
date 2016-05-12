@@ -53,7 +53,14 @@
         type: 'line',
         data: data,
         options: {
-          fullWidth: true
+          fullWidth: true,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          },
         }
       });
     }
