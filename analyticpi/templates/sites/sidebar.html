@@ -8,7 +8,7 @@
     <div class="collapse nav-toggleable-sm" id="nav-toggleable-sm">
         <ul class="nav nav-pills nav-stacked">
             <li class="nav-header">Menu</li>
-            {% for route, name in [('site.show_site', 'Overview'), ('site.show_page_views', 'Page View'), ('site.show_realtime', 'Realtime Tracking'), ('site.tracking_code', 'Tracking Code')] %}
+            {% for route, name in [('site.show_site', 'Overview'), ('site.show_page_views', 'Page View'), ('site.show_realtime', 'Realtime Tracking'), ('site.show_traffic_hours', 'Traffic Hours'), ('site.tracking_code', 'Tracking Code')] %}
                 <li {%- if request.path == url_for(route, site_domain=site.domain) %} class="active"{% endif %}>
                     <a href="{{ url_for(route, site_domain=site.domain) }}">{{ name }}</a>
                 </li>

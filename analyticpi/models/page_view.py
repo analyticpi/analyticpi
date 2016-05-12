@@ -54,3 +54,7 @@ class PageView(Model):
             referrer=request.args.get('ref') or '',
             headers=dict(request.headers),
             params=params)
+
+
+if __name__ == '__main__':
+    p = PageView

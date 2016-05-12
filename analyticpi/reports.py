@@ -63,14 +63,14 @@ def top_pages(query, limit):
 
 
 def top_traffic_times(query):
-    chunks = 3
+    chunks = 1
     hour = fn.date_part('hour', PageView.timestamp) / chunks
     id_count = fn.COUNT(PageView.id)
     result = dict(query.select(hour, id_count).group_by(hour).order_by(hour)
                   .tuples())
     total = sum(result.values())
     return [
-        ('%s - %s' % (i * chunks, (i + 1) * chunks), result[i],
+        (datetime.datetime.strptime('%s' % (i * chunks), '%H').strftime('%I:00 %p'), result[i],
          (100. * result[i]) / total) for i in range(24 / chunks)
     ]
 

@@ -11,7 +11,7 @@ from analyticpi.models.user import User
 JAVASCRIPT = """(function(){
     var d=document,i=new Image,e=encodeURIComponent;
     i.src='%s/track.gif?site=%s&url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
-    })()"""
+    })();"""
 
 class Site(Model):
     name = CharField()
@@ -28,7 +28,7 @@ class Site(Model):
 
     @property
     def tracking_js(self):
-        return JAVASCRIPT % (os.getenv('ROOT_URL'), self.id)
+        return JAVASCRIPT % (os.getenv('ROOT_URL'), self.uuid)
 
 
 class SiteUser(Model):

@@ -8,6 +8,7 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 from analyticpi import database, app, migration
+from analyticpi.fake import generate_fake_data
 
 manager = Manager(app)
 
@@ -19,6 +20,11 @@ def runserver():
     app.run(port=int(os.environ['PORT']))
     database.close()
 
+@manager.command
+def fake():
+    migration.initialize()
+    generate_fake_data()
+    database.close()
 
 @manager.command
 def migrate():

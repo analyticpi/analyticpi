@@ -57,6 +57,17 @@ def show_site(site_domain):
                            top_pages=top_pages(query, 20))
 
 
+@site_view.route('/site/<site_domain>/traffic_hours/')
+@login_required
+def show_traffic_hours(site_domain):
+    site = Site.get(domain=site_domain)
+    try:
+        SiteUser.get(site=site.id, user=current_user.id)
+    except SiteUser.UserDoesNotExist:
+        abort(404)
+    return render_template('/sites/traffic_hours.html', site=site)
+
+
 @site_view.route('/site/<site_domain>/tracking_code/')
 @login_required
 def tracking_code(site_domain):
@@ -129,3 +140,15 @@ def api_pageview(site_domain):
     return jsonify(**{'status': 'error', 'message': "Bad request"}), 400
 
 
+@site_view.route('/site/<site_domain>/api/traffic_hours')
+@login_required
+def api_traffic_hours(site_domain):
+    site = Site.get(domain=site_domain)
+    try:
+        SiteUser.get(site=site.id, user=current_user.id)
+    except SiteUser.UserDoesNotExist:
+        abort(404)
+    query = get_query(None, None, site)
+    top_traffic_times(query)
+    return jsonify(**{
+        'traffic_hours': top_traffic_times(query)})
