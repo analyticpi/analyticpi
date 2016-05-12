@@ -21,9 +21,36 @@ def get_query(start, end, site):
     return query
 
 
-def page_views(query):
+def page_view_count(query):
     return query.count()
 
+
+def get_page_views(site, timeformat, unit, count):
+    unit_plural = unit + 's'
+    query = get_query(datetime.datetime.now() - datetime.timedelta(**{unit_plural: count}),
+                      datetime.datetime.now(),
+                      site)
+    sql_result = (query.select(PageView.timestamp, fn.COUNT(PageView.id))
+           .group_by(getattr(PageView.timestamp, unit)).order_by(PageView.timestamp.desc())
+           .tuples().limit(count))
+    result = {k.strftime(timeformat): v for k, v in dict(sql_result).iteritems()}
+    if len(result) < count:
+        for i in xrange(count):
+            dt = datetime.datetime.now() - datetime.timedelta(**{unit_plural: i})
+            date_str = dt.strftime(timeformat)
+            if date_str not in result:
+                result[date_str] = 0
+    return result
+
+def page_view_by_time_unit(site, unit, count):
+    unit_plural = unit + 's'
+    query = get_query(datetime.datetime.now() - datetime.timedelta(**{unit_plural: count}),
+                      datetime.datetime.now(),
+                      site)
+    result = (query.select(PageView.timestamp, fn.COUNT(PageView.id))
+           .group_by(getattr(PageView.timestamp, unit)).order_by(PageView.timestamp.desc())
+           .tuples().limit(count))
+    return result
 
 def unique_ips(query):
     return (query.select(PageView.ip).group_by(PageView.ip).count())
@@ -95,7 +122,7 @@ def run_report(start, end, limit, skip_paths=False):
     low, high = get_low_high(query)
 
     print_banner('Overview from %s to %s' % (low, high))
-    print '%4d page views' % page_views(query)
+    print '%4d page views' % page_view_count(query)
     print '%4d unique IPs' % unique_ips(query)
 
     print_banner('Top Pages')

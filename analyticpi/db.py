@@ -14,5 +14,5 @@ try:
                                          password=url.password,
                                          host=url.hostname,
                                          port=url.port)
-except KeyError:
+except:
     database = peewee.SqliteDatabase('my_app.db')

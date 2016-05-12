@@ -1,3 +1,4 @@
+import os
 import uuid
 from datetime import datetime
 
@@ -6,8 +7,11 @@ from peewee import *
 from analyticpi.db import database
 from analyticpi.models.user import User
 
-TRACKING_JS = "<script src=\"http://localhost:8000/track.js?site={uuid}\"></script>"
 
+JAVASCRIPT = """(function(){
+    var d=document,i=new Image,e=encodeURIComponent;
+    i.src='%s/track.gif?site=%s&url='+e(d.location.href)+'&ref='+e(d.referrer)+'&t='+e(d.title);
+    })()"""
 
 class Site(Model):
     name = CharField()
@@ -20,7 +24,11 @@ class Site(Model):
 
     @property
     def tracking_code(self):
-        return TRACKING_JS.format(uuid=self.uuid)
+        return "<script src=\"http://{root_url}/track.js?site={uuid}\"></script>".format(root_url=os.getenv('ROOT_URL'), uuid=self.uuid)
+
+    @property
+    def tracking_js(self):
+        return JAVASCRIPT % (os.getenv('ROOT_URL'), self.id)
 
 
 class SiteUser(Model):

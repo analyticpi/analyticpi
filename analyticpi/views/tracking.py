@@ -22,6 +22,7 @@ def analyze():
     if not request.args.get('url'):
         abort(404)
 
+    print request.remote_addr
     with database.transaction():
         PageView.create_from_request()
 
